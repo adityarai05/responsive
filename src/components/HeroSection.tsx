@@ -46,7 +46,7 @@ const HeroSection = () => {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center items-center z-[50] pointer-events-none"
+      className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center items-center z-[50] pointer-events-none -mt-[100vh] rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] bg-background border-t border-black/5"
     >
       {/* We make the inner container point-events-auto so buttons/links still work, while the empty section doesn't block background clicks */}
       <div className="container mx-auto px-6 relative z-10 pointer-events-auto h-full flex flex-col justify-center">

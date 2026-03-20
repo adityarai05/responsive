@@ -20,16 +20,33 @@ const projectsData = [
 const ProjectsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
+  const titleContainerRef = useRef<HTMLDivElement>(null);
+  const titleTextRef = useRef<HTMLHeadingElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const indexRef = useRef(0);
 
   useGSAP(() => {
+    // Title Intro Animation
+    gsap.fromTo(titleTextRef.current, 
+      { x: "15vw", scale: 0.9 },
+      { 
+        x: "-15vw", 
+        scale: 1,
+        scrollTrigger: {
+          trigger: titleContainerRef.current,
+          start: "top bottom", 
+          end: "bottom top", 
+          scrub: 1.5
+        }
+      }
+    );
+
     // Pin the layout and scrub through the projects using ScrollTrigger
     ScrollTrigger.create({
-      trigger: containerRef.current,
+      trigger: pinRef.current,
       start: "top top",
       end: `+=${projectsData.length * 100}%`,
-      pin: pinRef.current,
+      pin: true,
       scrub: true,
       onUpdate: (self) => {
         let current = Math.floor(self.progress * projectsData.length);
@@ -45,10 +62,22 @@ const ProjectsSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section id="work" ref={containerRef} className="relative w-full bg-[#111111] text-white z-10 mb-20">
+    <section id="work" ref={containerRef} className="relative w-full bg-[#111111] text-white z-30 -mt-[100vh] rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] border-t border-white/5 pb-20">
       
-      {/* No Top Fade Overlay as requested */}
-      {/* Pinned Sticky Container */}
+      {/* Massive Title Intro Section */}
+      <div 
+        ref={titleContainerRef} 
+        className="w-full h-screen flex items-center justify-center overflow-hidden relative border-b border-white/5"
+      >
+        <motion.h1 
+          ref={titleTextRef}
+          className="text-[16vw] font-display font-black uppercase text-white whitespace-nowrap drop-shadow-2xl tracking-normal"
+          style={{ letterSpacing: "0.03em", lineHeight: "1" }}
+        >
+          PROJECTS<span className="text-[#ff5500]">.</span>
+        </motion.h1>
+      </div>
+
       {/* Pinned Sticky Container */}
       <div 
         ref={pinRef} 
@@ -79,7 +108,7 @@ const ProjectsSection = () => {
              {projectsData.map((p, i) => (
                 <div 
                   key={i} 
-                  className={`flex items-center gap-4 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${activeIndex === i ? "text-white translate-x-2" : "text-white/30"}`}
+                  className={`flex items-center gap-4 transition-all duration-700 ease-custom ${activeIndex === i ? "text-white translate-x-2" : "text-white/30"}`}
                 >
                    <span>—</span>
                    {p.title}
@@ -122,7 +151,7 @@ const ProjectsSection = () => {
                    key={i}
                    src={p.img}
                    alt={p.title}
-                   className={`absolute inset-0 w-full h-full object-cover transition-all duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                   className={`absolute inset-0 w-full h-full object-cover transition-all duration-900 ease-custom ${
                      activeIndex === i 
                        ? "opacity-100 scale-100 translate-y-0" 
                        : activeIndex > i 

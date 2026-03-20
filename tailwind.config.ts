@@ -93,6 +93,12 @@ export default {
         float: "float 6s ease-in-out infinite",
         "float-slow": "float-slow 8s ease-in-out infinite",
       },
+      transitionDuration: {
+        "900": "900ms",
+      },
+      transitionTimingFunction: {
+        "custom": "cubic-bezier(0.76, 0, 0.24, 1)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

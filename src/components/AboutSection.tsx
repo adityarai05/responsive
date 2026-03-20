@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "lucide-react"; // Dummy icon for social if needed
+import { Link, Download, Linkedin, Github } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,27 +10,91 @@ const AboutSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const scaleCardRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Scroll-driven animation mirroring the exact values from Hero section exit.
-    gsap.from(imageRef.current, {
+    // Fixed layout scale-down (prevents internal content from shrinking)
+    gsap.fromTo(scaleCardRef.current, {
+      width: "100%",
+      height: "100vh",
+      borderRadius: "0px",
+    }, {
       scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 85%", // Starts animating just as it comes into view
-        end: "center center", // Reaches natural position nicely in the center
-        scrub: 1.5,
+        trigger: wrapperRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
       },
-      opacity: 0,
-      scale: 0.65,
-      x: "-20vw",
-      y: "-30vh",
-      rotateZ: -10,
-      rotateY: -30,
-      ease: "power2.out"
+      width: "95%",
+      height: "92vh",
+      borderRadius: "40px",
+      ease: "none",
     });
-  }, { scope: containerRef });
+
+    // Content Fade-In Tied to Scroll
+    gsap.fromTo(leftContentRef.current, {
+      opacity: 0,
+      y: 80,
+    }, {
+      opacity: 1,
+      y: 0,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: wrapperRef.current,
+        start: "top 60%",
+        end: "top 25%",
+        scrub: 1.5,
+      }
+    });
+
+    // Image Card Flip Entrance Tied to Scroll
+    gsap.fromTo(rightContentRef.current, {
+      opacity: 0,
+      rotationX: -45, // Tilted back
+      rotationY: 90,  // Flipped 90 degrees sideways like a door
+      z: -300,        // Pushed deep into the Z-axis
+      scale: 0.7,
+      y: 50,
+    }, {
+      opacity: 1,
+      rotationX: 0,
+      rotationY: 0,
+      z: 0,
+      scale: 1,
+      y: 0,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: wrapperRef.current,
+        start: "top 50%", // Slightly offset for staggered scroll effect
+        end: "top 15%",
+        scrub: 1.5,
+      }
+    });
+
+    // Crossfade Background from Dark to Light Mode
+    gsap.fromTo(scaleCardRef.current, {
+      "--bg-color": "#111111",
+      "--fg-color": "#ffffff",
+      "--sub-color": "rgba(255,255,255,0.7)",
+      "--border-color": "rgba(255,255,255,0.2)"
+    }, {
+      "--bg-color": "#ffffff",
+      "--fg-color": "#000000",
+      "--sub-color": "rgba(0,0,0,0.7)",
+      "--border-color": "rgba(0,0,0,0.2)",
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: wrapperRef.current,
+        start: "top 50%", // Starts fading precisely when it hits middle of screen
+        end: "top 20%", // Fully white much faster (when it reaches 20% down from top)
+        scrub: 1.5, // 1.5 second interpolation smoothing for that premium feel
+      }
+    });
+  }, { scope: wrapperRef });
 
   const stats = [
     { number: "5+", label: "Years of Experience" },
@@ -39,79 +103,90 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-24 lg:py-40 bg-[#111111] text-white border-t border-white/5 overflow-hidden">
-      <div className="container mx-auto px-6 max-w-5xl" ref={ref}>
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center" ref={containerRef}>
-          
-          <div
-            style={{ perspective: 1000 }}
-            className="flex items-center justify-center relative w-full h-full order-last"
-          >
-            <div ref={imageRef} className="relative w-full max-w-sm lg:max-w-md aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl origin-center">
-              <img src="/profile.jpeg" alt="Portrait" className="w-full h-full object-cover rounded-[32px]" />
+    <div ref={wrapperRef} className="relative w-full h-[200vh] z-20">
+      <div className="absolute inset-0 z-0 bg-[url('/hero.jpeg')] bg-cover bg-center bg-fixed">
+      </div>
+      <div className="sticky top-0 z-10 w-full h-screen overflow-hidden p-0 flex items-center justify-center">
+        <div
+          ref={scaleCardRef}
+          className="origin-center shadow-[0_-20px_50px_rgba(0,0,0,0.1)] flex items-center justify-center p-4 sm:p-8"
+          style={{
+            width: "100%",
+            height: "100vh",
+            backgroundColor: "var(--bg-color, #111111)",
+            color: "var(--fg-color, #ffffff)"
+          } as React.CSSProperties}
+        >
+          <div className="w-full max-w-6xl mx-auto h-full flex items-center justify-center relative scale-[0.85] sm:scale-95 lg:scale-100 origin-center" ref={ref}>
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full" ref={contentRef}>
+
+              <div
+                ref={rightContentRef}
+                style={{ perspective: 1000 }}
+                className="flex items-center justify-center relative w-full h-full order-last mt-6 lg:mt-0 opacity-0"
+              >
+                <div className="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-[400px] aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl origin-center">
+                  <img src="/profile.jpeg" alt="Portrait" className="w-full h-full object-cover rounded-[32px]" />
+                </div>
+              </div>
+
+              <div
+                ref={leftContentRef}
+                className="order-first opacity-0"
+              >
+                <h2 className="font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl uppercase tracking-tighter mb-4 lg:mb-6 leading-[0.85]">
+                  ABOUT ME
+                </h2>
+                <p
+                  className="text-sm md:text-base lg:text-lg leading-relaxed font-medium max-w-md"
+                  style={{ color: "var(--sub-color)" }}
+                >
+                  Hi, I'm Aditya — Web developer skilled in front-end,  and AI, using intelligent systems to automate workflows, enhance UX, and build
+                  scalable, high-impact applications.
+                </p>
+
+                <div className="mt-6 lg:mt-8 flex flex-col gap-4 text-xs md:text-sm font-semibold max-w-md">
+                  <div>
+                    <p className="mb-1">Email :</p>
+                    <p style={{ color: "var(--sub-color)" }}>adityaraii2005@gmail.com</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 lg:mt-8 flex gap-6">
+                  {/* Social Icons with labels */}
+                  <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
+                    <div className="w-10 h-10 rounded-full border overflow-hidden flex items-center justify-center hover:opacity-100 transition-colors" style={{ borderColor: "var(--border-color)", backgroundColor: "var(--border-color)" }}>
+                      <img src="/linkedin.jpg" alt="LinkedIn" className="w-full h-full object-cover" />
+                    </div>
+                    <span className="font-bold text-[10px] tracking-wider uppercase" style={{ color: "var(--sub-color)" }}>LinkedIn</span>
+                  </a>
+                  <a href="https://github.com" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
+                    <div className="w-10 h-10 rounded-full border overflow-hidden flex items-center justify-center hover:opacity-100 transition-colors" style={{ borderColor: "var(--border-color)", backgroundColor: "var(--border-color)" }}>
+                      <img src="/github.jpg" alt="GitHub" className="w-full h-full object-cover" />
+                    </div>
+                    <span className="font-bold text-[10px] tracking-wider uppercase" style={{ color: "var(--sub-color)" }}>GitHub</span>
+                  </a>
+                </div>
+
+                <div className="mt-8 lg:mt-10">
+                  <a
+                    href="/AdityaRai_Resume.pdf"
+                    download="AdityaRai_Resume.pdf"
+                    target="_blank"
+                    className="inline-flex items-center gap-2 px-6 py-2 md:px-8 md:py-3 rounded-full border font-bold text-xs md:text-sm transition-colors uppercase tracking-wider hover:bg-black/5"
+                    style={{ borderColor: "var(--fg-color)", color: "var(--fg-color)" }}
+                  >
+                    <span>RESUME</span>
+                    <Download size={16} strokeWidth={2.5} />
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="order-first"
-          >
-            <h2 className="font-display text-6xl lg:text-8xl text-white uppercase tracking-tight mb-8">
-              ABOUT ME
-            </h2>
-            <p className="text-white/70 text-lg leading-relaxed font-medium max-w-md">
-              Hi, I'm Alex — a digital designer and full-stack developer passionate about crafting meaningful and impactful digital experiences.
-            </p>
-
-            <div className="mt-16 flex gap-8">
-              {stats.map((stat, i) => (
-                <div key={i} className="flex flex-col">
-                  <span className="text-6xl font-display text-primary leading-none mb-3">
-                    {stat.number}
-                  </span>
-                  <span className="text-sm font-bold text-white max-w-[100px] leading-tight">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="mt-16 grid grid-cols-2 gap-8 text-sm font-semibold max-w-md">
-              <div>
-                <p className="text-white mb-1">Call Today :</p>
-                <p className="text-white/60">+1 (555) 123-4567</p>
-              </div>
-              <div>
-                <p className="text-white mb-1">Email :</p>
-                <p className="text-white/60">hello@example.com</p>
-              </div>
-            </div>
-
-            <div className="mt-10 flex gap-4">
-              {/* Replace with actual social icons later */}
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white hover:text-[#111111] transition-colors">
-                <span className="font-bold text-lg">X</span>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white hover:text-[#111111] transition-colors">
-                <span className="font-bold text-sm">IN</span>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white hover:text-[#111111] transition-colors">
-                <span className="font-bold text-sm">BE</span>
-              </a>
-            </div>
-
-            <div className="mt-12">
-              <button className="px-8 py-3 rounded-full border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-[#111111] transition-colors uppercase tracking-wider">
-                MY STORY
-              </button>
-            </div>
-          </motion.div>
-
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

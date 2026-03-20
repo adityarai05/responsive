@@ -3,166 +3,151 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const servicesData = [
   {
-    title: "WEB APPS",
-    leftText: ["Web & App Design"],
-    rightText: ["UX Research"],
-    images: [
-      { src: "https://picsum.photos/seed/br1/400/500", top: "0%", left: "5%", width: "180px", height: "240px", rotate: -8, parallax: 1.2 },
-      { src: "https://picsum.photos/seed/br2/600/400", top: "45%", left: "10%", width: "320px", height: "200px", rotate: 4, parallax: 0.8 },
-      { src: "https://picsum.photos/seed/br3/400/400", top: "-5%", right: "15%", width: "200px", height: "200px", rotate: 12, parallax: -1.5 },
-      { src: "https://picsum.photos/seed/br4/500/300", top: "60%", right: "5%", width: "240px", height: "160px", rotate: -6, parallax: -0.5 },
-    ]
+    id: "01.",
+    title: "Web Design & Development",
+    description: "We build intuitive, fast, and scalable digital experiences that convert visitors into loyal customers, leveraging high-performance React and modern bleeding-edge web frameworks.",
+    tags: ["Responsive Design", "Interactive Design", "Web Apps"],
+    imgSrc: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "UI/UX",
-    leftText: ["Prototyping"],
-    rightText: ["Visual Design"],
-    images: [
-      { src: "https://picsum.photos/seed/ui1/400/500", top: "5%", left: "15%", width: "220px", height: "280px", rotate: 5, parallax: 1 },
-      { src: "https://picsum.photos/seed/ui2/600/400", top: "60%", left: "5%", width: "280px", height: "180px", rotate: -4, parallax: 0.6 },
-      { src: "https://picsum.photos/seed/ui3/400/400", top: "0%", right: "20%", width: "180px", height: "180px", rotate: -10, parallax: -1.2 },
-      { src: "https://picsum.photos/seed/ui4/500/300", top: "50%", right: "10%", width: "300px", height: "200px", rotate: 8, parallax: -0.8 },
-    ]
+    id: "02.",
+    title: "Branding",
+    description: "Crafting visual identities that feel clear, timeless, and true to your brand.",
+    tags: ["Logo Design", "Color System", "Typography", "Brand Direction"],
+    imgSrc: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "FRAMER",
-    leftText: ["Web Development"],
-    rightText: ["Interactions"],
-    images: [
-      { src: "https://picsum.photos/seed/fr1/400/500", top: "2%", left: "8%", width: "200px", height: "260px", rotate: -12, parallax: 1.5 },
-      { src: "https://picsum.photos/seed/fr2/600/400", top: "50%", left: "12%", width: "260px", height: "180px", rotate: 6, parallax: 0.9 },
-      { src: "https://picsum.photos/seed/fr3/400/400", top: "-2%", right: "12%", width: "240px", height: "240px", rotate: 15, parallax: -1.0 },
-      { src: "https://picsum.photos/seed/fr4/500/300", top: "60%", right: "8%", width: "220px", height: "140px", rotate: -8, parallax: -0.7 },
-    ]
+    id: "03.",
+    title: "Social Media",
+    description: "Strategic creative campaigns that engage audiences and build meaningful brand communities across social platforms.",
+    tags: ["Content Creation", "Community Management", "Strategy"],
+    imgSrc: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "LANDING PAGES",
-    leftText: ["Interactive Design"],
-    rightText: ["Responsive Design"],
-    images: [
-      { src: "https://picsum.photos/seed/an1/400/500", top: "10%", left: "12%", width: "180px", height: "220px", rotate: 8, parallax: 1.1 },
-      { src: "https://picsum.photos/seed/an2/600/400", top: "65%", left: "5%", width: "300px", height: "180px", rotate: -6, parallax: 0.7 },
-      { src: "https://picsum.photos/seed/an3/400/400", top: "10%", right: "20%", width: "200px", height: "200px", rotate: -12, parallax: -1.3 },
-      { src: "https://picsum.photos/seed/an4/500/300", top: "55%", right: "10%", width: "260px", height: "160px", rotate: 10, parallax: -0.6 },
-    ]
+    id: "04.",
+    title: "Motion Design",
+    description: "Dynamic animations and motion graphics that breathe life into your brand narrative and captivate audiences instantly.",
+    tags: ["3D Animation", "Lottie", "After Effects", "UI Animation"],
+    imgSrc: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
   }
 ];
 
 const ServicesSection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const x = (e.clientX - window.innerWidth / 2) / 25;
-    const y = (e.clientY - window.innerHeight / 2) / 25;
-    setMousePos({ x, y });
-  };
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   return (
-    <section
-      id="services"
-      onMouseMove={handleMouseMove}
-      className="relative min-h-screen py-24 lg:py-32 bg-[#111111] text-white overflow-hidden flex flex-col items-center justify-center font-display uppercase"
-    >
+    <section id="services" className="w-full bg-[#000000] text-white py-24 md:py-32 font-sans z-30 relative overflow-hidden">
+      <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 xl:px-16 flex flex-col items-center">
 
-      {/* Top Fade Overlay */}
-      <div className="absolute top-0 left-0 right-0 h-24 lg:h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-
-
-
-
-      <div className="relative w-full max-w-7xl mx-auto min-h-[70vh] flex flex-col pt-10 lg:pt-0" style={{ zIndex: 10 }}>
-
-        {/* Left 'What I Do' Title (Native Flow) */}
-        <div className="w-full flex justify-start px-6 lg:px-12 mb-12 lg:mb-16 z-30 relative">
-          <h3 className="text-white/30 font-display text-5xl sm:text-7xl lg:text-[8rem] tracking-tight lg:tracking-[0.1em] uppercase whitespace-nowrap leading-[0.8] drop-shadow-sm">
-            WHAT I DO?
-          </h3>
+        {/* Massive Bold Headline */}
+        <div className="flex justify-center w-full mb-16 md:mb-24">
+          <h2 className="text-[11vw] sm:text-[6rem] lg:text-[7.5rem] xl:text-[9rem] font-sans font-black uppercase text-white leading-[0.85] tracking-tight text-center relative inline-flex items-start justify-center">
+            HOW I CAN HELP
+            <span className="text-[10px] md:text-sm font-normal tracking-widest text-[#a1a1aa] ml-2 md:ml-4 mt-2 md:mt-4">
+              (SERVICES)
+            </span>
+          </h2>
         </div>
 
-        {/* Main Stack Container to prevent overlap */}
-        <div className="relative flex-1 flex flex-col items-center justify-center w-full">
-
-          {/* Floating Images Layer (z-20) */}
-          <div className="absolute inset-0 pointer-events-none hidden md:block" style={{ zIndex: 20 }}>
-            <AnimatePresence>
-              {hoveredIndex !== null && servicesData[hoveredIndex].images.map((img, idx) => (
-                <motion.div
-                  key={`${hoveredIndex}-${idx}`}
-                  initial={{ opacity: 0, scale: 0.8, y: 30, rotate: 0 }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    y: mousePos.y * img.parallax,
-                    x: mousePos.x * img.parallax,
-                    rotate: img.rotate
-                  }}
-                  exit={{ opacity: 0, scale: 0.8, y: -30 }}
-                  transition={{
-                    opacity: { duration: 0.4 },
-                    scale: { duration: 0.4 },
-                    rotate: { duration: 0.4 },
-                    x: { type: "spring", stiffness: 50, damping: 20 },
-                    y: { type: "spring", stiffness: 50, damping: 20 },
-                  }}
-                  className="absolute rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 filter brightness-90 bg-gray-900"
-                  style={{
-                    top: img.top,
-                    left: img.left,
-                    right: img.right,
-                    bottom: (img as any).bottom,
-                    width: img.width,
-                    height: img.height,
-                  }}
-                >
-                  <img src={img.src} alt="" className="w-full h-full object-cover" />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-          {/* Text Items */}
+        {/* Vertical Accordion Structure */}
+        <div className="w-full border-t border-[#27272a] max-w-[1400px]">
           {servicesData.map((service, i) => {
-            const isActive = hoveredIndex === i;
+            const isExpanded = expandedIndex === i;
 
             return (
               <div
-                key={service.title}
-                className="relative flex items-center justify-center w-full group cursor-pointer transition-all duration-300 py-1 sm:py-2"
-                style={{ zIndex: isActive ? 30 : 10 }}
-                onMouseEnter={() => setHoveredIndex(i)}
+                key={service.id}
+                className="w-full border-b border-[#27272a] group cursor-pointer transition-colors duration-500 hover:bg-[#050505]"
+                onMouseEnter={() => setExpandedIndex(i)}
+                onClick={() => setExpandedIndex(i)}
               >
-                {/* Left Subtexts */}
-                <motion.div
-                  initial={false}
-                  animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 20 }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute left-[2%] md:left-[8%] lg:left-[12%] hidden md:flex flex-col text-xs sm:text-sm text-white/40 tracking-widest font-sans font-medium space-y-2"
-                >
-                  {service.leftText.map((txt) => <span key={txt}>{txt}</span>)}
-                </motion.div>
+                <div className="w-full px-2 lg:px-6 py-4 lg:py-6 min-h-[80px] lg:min-h-[100px] flex items-center justify-center">
+                  <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start lg:items-center">
 
-                {/* Central Title */}
-                <h2
-                  className={`font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] uppercase leading-[0.8] tracking-tighter transition-colors duration-400 ease-out select-none ${isActive ? "text-white" : "text-white/20"
-                    }`}
-                >
-                  {service.title}
-                </h2>
+                    {/* Column 1: Number */}
+                    <div className="col-span-1 lg:col-span-3">
+                      <span className="text-[#a1a1aa] font-medium text-xl lg:text-3xl tabular-nums">
+                        {service.id.replace('.', '')}<span className="text-[#ea580c]">.</span>
+                      </span>
+                    </div>
 
-                {/* Right Subtexts */}
-                <motion.div
-                  initial={false}
-                  animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute right-[2%] md:right-[8%] lg:right-[12%] hidden md:flex flex-col text-xs sm:text-sm text-white/40 tracking-widest font-sans font-medium space-y-2 text-right"
-                >
-                  {service.rightText.map((txt) => <span key={txt}>{txt}</span>)}
-                </motion.div>
+                    {/* Column 2 & 3: Interactive Content */}
+                    <div className="col-span-1 lg:col-span-9 relative flex flex-col justify-center">
+                      
+                      {/* Expanded Content */}
+                      <motion.div
+                        initial={false}
+                        animate={{ 
+                          height: isExpanded ? "auto" : 0, 
+                          opacity: isExpanded ? 1 : 0 
+                        }}
+                        transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                        className="w-full overflow-hidden"
+                      >
+                        <div className="flex flex-col lg:flex-row w-full gap-6 lg:gap-12 py-2 lg:py-4">
+
+                          {/* Left Column: Landscape Image with Warm Tones */}
+                          <div className="w-full lg:w-[45%] shrink-0">
+                            <div className="w-full aspect-[16/9] rounded-[16px] lg:rounded-[20px] overflow-hidden shadow-2xl relative">
+                              {/* Subtle overlay */}
+                              <div className="absolute inset-0 bg-black/10 z-10 hidden group-hover:block transition-all duration-700" />
+                              <img src={service.imgSrc} alt={service.title} className="w-full h-full object-cover filter contrast-[1.1] saturate-[1.2]" />
+                            </div>
+                          </div>
+
+                          {/* Right Column: Title, Description, and UI Pills */}
+                          <div className="w-full lg:w-[55%] flex flex-col justify-center">
+                            <h3 className="text-white font-sans font-bold text-2xl sm:text-3xl lg:text-[2rem] tracking-tight mb-2 lg:mb-4">
+                              {service.title}
+                            </h3>
+                            <p className="text-[#a1a1aa] text-sm lg:text-base font-medium leading-relaxed max-w-[500px] mb-6 lg:mb-8">
+                              {service.description}
+                            </p>
+
+                            {/* Small Minimalist UI Tags */}
+                            <div className="flex flex-wrap gap-2 lg:gap-3">
+                              {service.tags.map(tag => (
+                                <span key={tag} className="bg-[#18181b] border border-[#27272a] text-[#d4d4d8] text-[10px] sm:text-xs font-semibold px-4 py-2 rounded-full tracking-wide">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                        </div>
+                      </motion.div>
+
+                      {/* Collapsed Content */}
+                      <motion.div
+                        initial={false}
+                        animate={{ 
+                          height: isExpanded ? 0 : "auto", 
+                          opacity: isExpanded ? 0 : 1 
+                        }}
+                        transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                        className="w-full overflow-hidden"
+                      >
+                        <div className="flex w-full py-2 lg:py-4">
+                          {/* Layout Matcher for unexpanded state */}
+                          <div className="hidden lg:block lg:w-[45%] shrink-0 mr-8 lg:mr-16" />
+
+                          <div className="w-full lg:w-[55%] flex items-center">
+                            <h3 className="text-white/80 group-hover:text-white font-sans font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight transition-colors duration-300">
+                              {service.title}
+                            </h3>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                    </div>
+
+                  </div>
+                </div>
               </div>
-            );
+            )
           })}
         </div>
+
       </div>
     </section>
   );
