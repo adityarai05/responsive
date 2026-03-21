@@ -103,7 +103,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <div ref={wrapperRef} className="relative w-full h-[200vh] z-20">
+    <div id="about" ref={wrapperRef} className="relative w-full h-[250vh] z-20">
       <div className="absolute inset-0 z-0 bg-[url('/hero.jpeg')] bg-cover bg-center bg-fixed">
       </div>
       <div className="sticky top-0 z-10 w-full h-screen overflow-hidden p-0 flex items-center justify-center">
@@ -154,13 +154,13 @@ const AboutSection = () => {
 
                 <div className="mt-6 lg:mt-8 flex gap-6">
                   {/* Social Icons with labels */}
-                  <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
+                  <a href="https://www.linkedin.com/in/adityarai-017996375/" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
                     <div className="w-10 h-10 rounded-full border overflow-hidden flex items-center justify-center hover:opacity-100 transition-colors" style={{ borderColor: "var(--border-color)", backgroundColor: "var(--border-color)" }}>
                       <img src="/linkedin.jpg" alt="LinkedIn" className="w-full h-full object-cover" />
                     </div>
                     <span className="font-bold text-[10px] tracking-wider uppercase" style={{ color: "var(--sub-color)" }}>LinkedIn</span>
                   </a>
-                  <a href="https://github.com" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
+                  <a href="https://github.com/adityarai05" target="_blank" rel="noreferrer" className="flex flex-col items-center gap-2 group hover:-translate-y-1 transition-transform">
                     <div className="w-10 h-10 rounded-full border overflow-hidden flex items-center justify-center hover:opacity-100 transition-colors" style={{ borderColor: "var(--border-color)", backgroundColor: "var(--border-color)" }}>
                       <img src="/github.jpg" alt="GitHub" className="w-full h-full object-cover" />
                     </div>

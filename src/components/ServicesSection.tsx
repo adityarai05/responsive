@@ -11,23 +11,23 @@ const servicesData = [
   },
   {
     id: "02.",
-    title: "Branding",
-    description: "Crafting visual identities that feel clear, timeless, and true to your brand.",
-    tags: ["Logo Design", "Color System", "Typography", "Brand Direction"],
+    title: "UI & UX Design",
+    description: "Design modern, user-friendly interfaces with smooth animations and responsive layouts to deliver engaging digital experiences..",
+    tags: ["Responsive Design", "Interactive UI", "User Experience"],
     imgSrc: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: "03.",
-    title: "Social Media",
-    description: "Strategic creative campaigns that engage audiences and build meaningful brand communities across social platforms.",
-    tags: ["Content Creation", "Community Management", "Strategy"],
+    title: "AI & Automation",
+    description: "I build intelligent tools like chatbots and automation systems using Generative AI to solve real business problems.",
+    tags: ["Generative AI", "Chatbots", "Automation"],
     imgSrc: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: "04.",
-    title: "Motion Design",
-    description: "Dynamic animations and motion graphics that breathe life into your brand narrative and captivate audiences instantly.",
-    tags: ["3D Animation", "Lottie", "After Effects", "UI Animation"],
+    title: "Landing Pages",
+    description: "Design high-converting, fast, and responsive landing pages focused on user engagement and business results.",
+    tags: ["Lead Generation", "Modern UI", "Clean Layouts"],
     imgSrc: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
   }
 ];
@@ -73,13 +73,13 @@ const ServicesSection = () => {
 
                     {/* Column 2 & 3: Interactive Content */}
                     <div className="col-span-1 lg:col-span-9 relative flex flex-col justify-center">
-                      
+
                       {/* Expanded Content */}
                       <motion.div
                         initial={false}
-                        animate={{ 
-                          height: isExpanded ? "auto" : 0, 
-                          opacity: isExpanded ? 1 : 0 
+                        animate={{
+                          height: isExpanded ? "auto" : 0,
+                          opacity: isExpanded ? 1 : 0
                         }}
                         transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
                         className="w-full overflow-hidden"
@@ -120,9 +120,9 @@ const ServicesSection = () => {
                       {/* Collapsed Content */}
                       <motion.div
                         initial={false}
-                        animate={{ 
-                          height: isExpanded ? 0 : "auto", 
-                          opacity: isExpanded ? 0 : 1 
+                        animate={{
+                          height: isExpanded ? 0 : "auto",
+                          opacity: isExpanded ? 0 : 1
                         }}
                         transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
                         className="w-full overflow-hidden"

@@ -10,53 +10,37 @@ const stackData = [
   {
     title: "FRAMER",
     subtitle: "WEB DESIGN PLATFORM",
-    percentage: "85%",
-    description: "The internet is your canvas. Framer is where we design and publish stunning sites based in Amsterdam."
-  },
-  {
-    title: "FIGMA",
-    subtitle: "DESIGN TOOL",
-    percentage: "98%",
-    description: "Figma is a collaborative web application for design with additional offline features for macOS and Windows."
+    description: "I use Framer to turn ideas into creative websites by leveraging templates, reusable components, and custom design enhancements."
   },
   {
     title: "JAVASCRIPT",
     subtitle: "FRONT END DEVELOPMENT",
-    percentage: "92%",
-    description: "JavaScript, often abbreviated as JS, is a programming language and technology alongside HTML and CSS."
+    description: "I use JavaScript to add interactivity and dynamic behavior to websites, leveraging its event-driven nature for seamless user interactions."
   },
   {
     title: "REACT",
     subtitle: "PERFORMANCE FRAMEWORK",
-    percentage: "90%",
     description: "The library for web and native user interfaces. Built for creating highly interactive and dynamic data-driven views."
-  }
+  },
+  {
+    title: "MongoDB",
+    subtitle: "DATABASE",
+    description: "I use MongoDB for flexible and scalable data storage in my projects, leveraging its document-based structure for easy data management."
+  },
 ];
 
 const experienceData = [
   {
-    title: "SENIOR UX DESIGNER",
-    subtitle: "CLAVMEN STUDIO",
-    percentage: "2022 - PRESENT",
-    description: "Leading the product redesigns, managing comprehensive design systems, and bridging the gap between developers and stakeholders."
+    title: "WEB DEV INTERN",
+    subtitle: "ATLASIA",
+    percentage: "FEB 2026 - MARCH 2026",
+    description: "Worked as a Web Development Intern, utilizing generative AI tools to design and develop modern web applications."
   },
-  {
-    title: "LEAD PRODUCT DESIGNER",
-    subtitle: "LOSIFY INC",
-    percentage: "2019 - 2022",
-    description: "Designed core product features handling thousands of active users seamlessly through intuitive interface mappings."
-  },
-  {
-    title: "FRONTEND DEVELOPER",
-    subtitle: "AGENCY 09",
-    percentage: "2017 - 2019",
-    description: "Architected optimized interactive front-end layouts and fluid GSAP animations for premier digital agency clients."
-  }
 ];
 
 const StackAndExperienceSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const stackSectionRef = useRef<HTMLDivElement>(null);
   const stackTrackRef = useRef<HTMLDivElement>(null);
   const stackDotRef = useRef<HTMLDivElement>(null);
@@ -97,10 +81,10 @@ const StackAndExperienceSection = () => {
 
   return (
     <section id="stack" ref={containerRef} className="relative w-full bg-[#111111] text-white z-10 py-24 md:py-48 font-sans">
-      
+
       {/* --- STACK & TOOLS SECTION --- */}
       <div ref={stackSectionRef} className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-0 relative z-20">
-        
+
         {/* Left Column (Sticky) */}
         <div className="md:col-span-4 relative">
           <div className="sticky top-32 flex justify-start">
@@ -112,11 +96,11 @@ const StackAndExperienceSection = () => {
 
         {/* Center Timeline Track (Hidden on mobile) */}
         <div className="hidden md:flex flex-col items-center relative md:col-span-1">
-           <div className="sticky top-32 h-[300px] w-full flex justify-center mt-2">
-             <div ref={stackTrackRef} className="h-full w-[2px] bg-white/10 relative rounded-full">
-               <div ref={stackDotRef} className="absolute left-1/2 -ml-1.5 top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.9)]" />
-             </div>
-           </div>
+          <div className="sticky top-32 h-[300px] w-full flex justify-center mt-2">
+            <div ref={stackTrackRef} className="h-full w-[2px] bg-white/10 relative rounded-full">
+              <div ref={stackDotRef} className="absolute left-1/2 -ml-1.5 top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.9)]" />
+            </div>
+          </div>
         </div>
 
         {/* Right Column (Scrollable List) */}
@@ -134,9 +118,9 @@ const StackAndExperienceSection = () => {
                 <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase">
                   {item.title}
                 </h3>
-                <span className="text-[#888] font-semibold text-sm sm:text-base">
+                {/*<span className="text-[#888] font-semibold text-sm sm:text-base">
                   {item.percentage}
-                </span>
+                </span>*/}
               </div>
               <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] text-[#888] mb-6">
                 {item.subtitle}
@@ -153,7 +137,7 @@ const StackAndExperienceSection = () => {
 
       {/* --- EXPERIENCE SECTION --- */}
       <div ref={expSectionRef} className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-0 relative z-20">
-        
+
         {/* Left Column (Sticky) */}
         <div className="md:col-span-4 relative">
           <div className="sticky top-32 flex justify-start">
@@ -165,11 +149,11 @@ const StackAndExperienceSection = () => {
 
         {/* Center Timeline Track (Hidden on mobile) */}
         <div className="hidden md:flex flex-col items-center relative md:col-span-1">
-           <div className="sticky top-32 h-[300px] w-full flex justify-center mt-2">
-             <div ref={expTrackRef} className="h-full w-[2px] bg-white/10 relative rounded-full">
-               <div ref={expDotRef} className="absolute left-1/2 -ml-1.5 top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.9)]" />
-             </div>
-           </div>
+          <div className="sticky top-32 h-[300px] w-full flex justify-center mt-2">
+            <div ref={expTrackRef} className="h-full w-[2px] bg-white/10 relative rounded-full">
+              <div ref={expDotRef} className="absolute left-1/2 -ml-1.5 top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.9)]" />
+            </div>
+          </div>
         </div>
 
         {/* Right Column (Scrollable List) */}
