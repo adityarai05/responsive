@@ -45,12 +45,12 @@ const ContactSection = () => {
             <div className="bg-card rounded-2xl p-6 shadow-soft">
               <Mail className="w-5 h-5 text-primary mb-3" />
               <div className="text-sm text-muted-foreground">Email</div>
-              <div className="font-medium text-foreground">hello@alexrivera.dev</div>
+              <div className="font-medium text-foreground">adityaraii2005@gmail.com</div>
             </div>
             <div className="bg-card rounded-2xl p-6 shadow-soft">
               <MapPin className="w-5 h-5 text-primary mb-3" />
               <div className="text-sm text-muted-foreground">Location</div>
-              <div className="font-medium text-foreground">San Francisco, CA</div>
+              <div className="font-medium text-foreground">India</div>
             </div>
           </motion.div>
 

@@ -13,19 +13,29 @@ const CreativeAgencySection = () => {
 
 
   useGSAP(() => {
+    // 1. Master Pin
+    // Pin for a total of 300vh: 15vh text fill + 50vh delay + 100vh for next section to pull up
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "+=300%",
+      pin: true,
+    });
+
+    // 2. Text Fill Animation
     gsap.to(textFillRef.current, {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=200%", // Pins for exact 200vh
-        pin: true,
+        end: "+=150%", // Fast fill over 150vh
         scrub: 1,
       },
       clipPath: "inset(0 0% 0 0)",
       ease: "none"
     });
 
-    // Sub-animation: Once unpinned, fade and scale down to seamlessly transition out
+    // 3. Sub-animation: Fade and scale down to seamlessly transition out as ServicesSection pulls up
+    // ServicesSection starts pulling at 200vh scroll and finishes at 300vh scroll
     gsap.fromTo(contentRef.current,
       { opacity: 1, scale: 1 },
       {
@@ -33,8 +43,8 @@ const CreativeAgencySection = () => {
         scale: 0.95,
         scrollTrigger: {
           trigger: containerRef.current,
-          start: () => `top+=${window.innerHeight * 2} top`, // Triggers exactly off unpin
-          end: () => `top+=${window.innerHeight * 3} top`, // End at end of native 100vh scroll
+          start: () => `top+=${window.innerHeight * 2} top`,
+          end: () => `top+=${window.innerHeight * 3} top`,
           scrub: true,
         }
       }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const navLinks = [
@@ -14,6 +15,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [atBottom, setAtBottom] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -30,7 +33,18 @@ const Navbar = () => {
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (href === "/contact") {
+      navigate("/contact");
+    } else if (href.startsWith("#")) {
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      } else {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -64,7 +78,7 @@ const Navbar = () => {
         {/* Right Button */}
         <div className="hidden md:block pr-1">
           <button
-            onClick={() => handleClick("#contact")}
+            onClick={() => handleClick("/contact")}
             className="bg-foreground text-background px-6 py-2 rounded-full text-sm font-semibold hover:bg-foreground/90 transition-colors"
           >
             Contact
@@ -102,7 +116,7 @@ const Navbar = () => {
               ))}
               <hr className="border-black/5" />
               <button
-                onClick={() => handleClick("#contact")}
+                onClick={() => handleClick("/contact")}
                 className="bg-foreground text-background px-6 py-3 rounded-full text-base font-semibold text-center w-full"
               >
                 Let's Talk
