@@ -38,10 +38,11 @@ const IntroSection = () => {
         <div className="absolute inset-0 z-10 w-full h-full flex items-center justify-center pointer-events-none">
           
           {/* Simple Typography Layer */}
-          <div className="relative z-20 flex flex-col items-center justify-center w-full h-full pointer-events-none">
-            <span className="text-[34vw] md:text-[24vw] lg:text-[17vw] whitespace-nowrap font-black uppercase leading-[0.8] tracking-[0.02em] text-white">
-              ADITYA RAI
-            </span>
+          <div className="relative z-20 flex flex-col items-center justify-center w-full h-full pointer-events-none px-4">
+            <h1 className="text-[15vw] sm:text-[16vw] md:text-[17vw] lg:text-[18vw] whitespace-nowrap font-black uppercase leading-[0.8] tracking-[0.02em] text-white flex flex-row gap-[2vw] md:gap-[1.5vw] text-center">
+              <span>ADITYA</span>
+              <span>RAI</span>
+            </h1>
           </div>
           
         </div>

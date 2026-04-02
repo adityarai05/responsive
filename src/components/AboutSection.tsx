@@ -17,10 +17,9 @@ const AboutSection = () => {
   const rightContentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Fixed layout scale-down (prevents internal content from shrinking)
+    // Fixed layout scale-down using transform to avoid restricting mobile heights
     gsap.fromTo(scaleCardRef.current, {
-      width: "100%",
-      height: "100vh",
+      scale: 1,
       borderRadius: "0px",
     }, {
       scrollTrigger: {
@@ -29,8 +28,7 @@ const AboutSection = () => {
         end: "bottom bottom",
         scrub: true,
       },
-      width: "95%",
-      height: "92vh",
+      scale: 0.95,
       borderRadius: "40px",
       ease: "none",
     });
@@ -106,18 +104,16 @@ const AboutSection = () => {
     <div id="about" ref={wrapperRef} className="relative w-full h-[250vh] z-20">
       <div className="absolute inset-0 z-0 bg-[url('/hero.jpeg')] bg-cover bg-center bg-fixed">
       </div>
-      <div className="sticky top-0 z-10 w-full h-screen overflow-hidden p-0 flex items-center justify-center">
+      <div className="sticky top-0 z-10 w-full h-[100dvh] overflow-y-auto overflow-x-hidden p-0 flex flex-col items-center justify-start sm:justify-center">
         <div
           ref={scaleCardRef}
-          className="origin-center shadow-[0_-20px_50px_rgba(0,0,0,0.1)] flex items-center justify-center p-4 sm:p-8"
+          className="origin-center shadow-[0_-20px_50px_rgba(0,0,0,0.1)] flex items-center justify-center p-6 sm:p-8 w-full min-h-[100dvh]"
           style={{
-            width: "100%",
-            height: "100vh",
             backgroundColor: "var(--bg-color, #111111)",
             color: "var(--fg-color, #ffffff)"
           } as React.CSSProperties}
         >
-          <div className="w-full max-w-6xl mx-auto h-full flex items-center justify-center relative scale-[0.85] sm:scale-95 lg:scale-100 origin-center" ref={ref}>
+          <div className="w-full max-w-6xl mx-auto h-full flex items-center justify-center relative scale-100 origin-center py-12 lg:py-0" ref={ref}>
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full" ref={contentRef}>
 
               <div

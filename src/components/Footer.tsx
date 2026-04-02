@@ -1,5 +1,5 @@
 const Footer = () => (
-  <footer className="relative w-full bg-white text-black py-8 px-6 lg:px-12 flex flex-col justify-between font-sans h-screen overflow-hidden">
+  <footer className="relative w-full bg-white text-black py-8 px-6 lg:px-12 flex flex-col justify-between font-sans h-[100dvh] overflow-hidden">
 
     {/* Top Navbar */}
     {/*<div className="flex flex-row justify-between items-center w-full pt-4 pb-12 text-sm md:text-base font-bold">
@@ -34,7 +34,7 @@ const Footer = () => (
 
     {/* Massive Name Text */}
     <div className="w-full flex items-end justify-center mt-12 md:mt-auto md:-mb-8 lg:-mb-14 z-0 relative pointer-events-none px-4">
-      <h1 className="text-[15vw] sm:text-[19vw] flex gap-4 md:gap-10 leading-[0.85] font-display font-black tracking-normal whitespace-nowrap text-black m-0 p-0 select-none">
+      <h1 className="text-[18vw] sm:text-[15vw] md:text-[19vw] flex flex-col sm:flex-row gap-0 sm:gap-4 md:gap-10 leading-[0.85] font-display font-black tracking-normal text-black m-0 p-0 select-none text-center">
         <span>ADITYA</span>
         <span>RAI</span>
       </h1>

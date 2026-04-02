@@ -45,7 +45,7 @@ const HeroSection = () => {
     // We add z-[50] to the section so that the pinned element stays ABOVE the next section (Services)
     <section
       ref={containerRef}
-      className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center items-center z-[50] pointer-events-none -mt-[100vh] rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] bg-background border-t border-black/5"
+      className="relative min-h-[100dvh] pt-32 pb-20 flex flex-col justify-center items-center z-[50] pointer-events-none -mt-[100dvh] rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] bg-background border-t border-black/5"
     >
       {/* We make the inner container point-events-auto so buttons/links still work, while the empty section doesn't block background clicks */}
       <div className="container mx-auto px-6 relative z-10 pointer-events-auto h-full flex flex-col justify-center">
@@ -73,12 +73,12 @@ const HeroSection = () => {
             {/* Central Image Wrapper (Pinned) */}
             <div
               ref={imageWrapperRef}
-              className="relative z-50 flex items-center justify-center w-[300px] h-[400px] lg:w-[360px] lg:h-[480px] shrink-0 pointer-events-none"
+              className="relative z-50 flex items-center justify-center w-[65vw] max-w-[300px] aspect-[3/4] lg:w-[360px] lg:h-[480px] lg:aspect-auto shrink-0 pointer-events-none"
             >
               {/* Inner Transformable Image */}
               <div
                 ref={imageRef}
-                className="relative w-full h-full rounded-[32px] overflow-hidden shadow-2xl origin-center pointer-events-auto"
+                className="relative w-full h-full rounded-[24px] lg:rounded-[32px] overflow-hidden shadow-2xl origin-center pointer-events-auto"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <img src="/profile.jpeg" alt="Portrait" className="w-full h-full object-cover rounded-[32px]" />

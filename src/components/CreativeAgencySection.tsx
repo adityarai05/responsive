@@ -62,16 +62,16 @@ const CreativeAgencySection = () => {
           ref={textContainerRef}
           className="w-full flex items-center justify-center relative px-2 sm:px-4 md:px-8"
         >
-          <div className="relative inline-block w-full text-center">
+          <div className="relative inline-block w-full text-center px-4">
             {/* Base Outline Layer (Unfilled) */}
-            <h2 className="text-[7.5vw] md:text-[6.5vw] lg:text-[6vw] font-display font-black uppercase leading-[1.05] tracking-[0.05em] text-[#D3D3D3] whitespace-nowrap">
+            <h2 className="text-[12vw] sm:text-[7.5vw] md:text-[6.5vw] lg:text-[6vw] font-display font-black uppercase leading-[1.1] tracking-[0.02em] text-[#D3D3D3] break-words">
               I Build With Code And AI
             </h2>
 
             {/* Solid Highlight Layer (Filled via Scroll) */}
             <h2
               ref={textFillRef}
-              className="absolute top-0 left-0 w-full h-full text-[7.5vw] md:text-[6.5vw] lg:text-[6vw] font-display font-black uppercase leading-[1.05] tracking-[0.05em] text-black whitespace-nowrap"
+              className="absolute top-0 left-0 w-full h-full px-4 text-[12vw] sm:text-[7.5vw] md:text-[6.5vw] lg:text-[6vw] font-display font-black uppercase leading-[1.1] tracking-[0.02em] text-black break-words"
               style={{ clipPath: "inset(0 100% 0 0)" }}
             >
               I Build With Code And AI

@@ -60,7 +60,7 @@ const ProjectsSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section id="work" ref={containerRef} className="relative w-full bg-[#111111] text-white z-30 -mt-[100vh] rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] border-t border-white/5 pb-20">
+    <section id="work" ref={containerRef} className="relative w-full bg-[#111111] text-white z-30 -mt-[100dvh] rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] border-t border-white/5 pb-20">
 
       {/* Massive Title Intro Section */}
       <div
@@ -79,7 +79,7 @@ const ProjectsSection = () => {
       {/* Pinned Sticky Container */}
       <div
         ref={pinRef}
-        className="w-full h-screen flex flex-col md:flex-row items-center justify-between px-6 lg:px-20 py-12 md:py-24 overflow-hidden relative max-w-[1600px] mx-auto"
+        className="w-full h-[100dvh] flex flex-col md:flex-row items-center justify-between px-6 lg:px-20 py-12 md:py-24 overflow-hidden relative max-w-[1600px] mx-auto"
       >
 
         {/* Left Column: Number, List, and Details */}

@@ -13,7 +13,7 @@ const Contact = () => {
       <Navbar />
       
       {/* Main content wrapper given z-10 and a bottom margin matching footer height so it scrolls up to reveal the footer behind it */}
-      <main className="relative z-10 bg-background mb-[100vh] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-b-[40px] sm:rounded-b-[60px] pt-16">
+      <main className="relative z-10 bg-background mb-[100dvh] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-b-[40px] sm:rounded-b-[60px] pt-16">
         <ContactSection />
       </main>
 
