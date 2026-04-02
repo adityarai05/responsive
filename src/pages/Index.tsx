@@ -27,7 +27,7 @@ const Index = () => {
   });
 
   return (
-    <div className="bg-background min-h-screen text-foreground relative">
+    <div className="bg-background min-h-[100dvh] text-foreground relative">
 
       <Navbar />
     
@@ -50,7 +50,7 @@ const Index = () => {
     </main>
 
     {/* Fixed sticky footer sitting at the back waiting to be revealed */}
-    <div className="fixed bottom-0 left-0 w-full z-0 h-screen pointer-events-auto">
+    <div className="fixed bottom-0 left-0 w-full z-0 h-[100dvh] pointer-events-auto">
       <Footer />
     </div>
 

@@ -55,7 +55,7 @@ const CreativeAgencySection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-screen bg-white overflow-hidden z-20"
+      className="relative w-full h-[100dvh] bg-white overflow-hidden z-20"
     >
       <div ref={contentRef} className="w-full h-full flex flex-col items-center justify-center relative origin-bottom">
         <div

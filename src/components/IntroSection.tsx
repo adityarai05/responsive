@@ -7,6 +7,8 @@ import WaterWave from "react-water-wave";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { ErrorBoundary } from "./ErrorBoundary";
+
 const IntroSection = () => {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -19,19 +21,21 @@ const IntroSection = () => {
     <div id="home" className="relative w-full h-[200vh] z-20">
       <section 
         ref={containerRef} 
-        className="sticky top-0 w-full h-screen overflow-hidden font-display z-30 bg-[#0a0a0a]"
+        className="sticky top-0 w-full h-[100dvh] overflow-hidden font-display z-30 bg-[#0a0a0a]"
       >
         {/* Water Simulation Isolated Background Layer */}
-        <div className="absolute inset-0 z-0 w-full h-full">
-          <WaterWave
-            imageUrl="/hero.jpeg"
-            dropRadius={25}
-            perturbance={0.03}
-            resolution={512}
-            style={{ width: "100%", height: "100%", backgroundSize: "cover" }}
-          >
-            {() => <div className="hidden" />}
-          </WaterWave>
+        <div className="absolute inset-0 z-0 w-full h-full bg-[#0a0a0a]">
+          <ErrorBoundary fallback={<div className="w-full h-full bg-[url('/hero.jpeg')] bg-cover bg-center" />}>
+            <WaterWave
+              imageUrl="/hero.jpeg"
+              dropRadius={25}
+              perturbance={0.03}
+              resolution={512}
+              style={{ width: "100%", height: "100%", backgroundSize: "cover" }}
+            >
+              {() => <div className="hidden" />}
+            </WaterWave>
+          </ErrorBoundary>
         </div>
 
         {/* Main Layout Container Overlay */}

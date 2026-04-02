@@ -59,7 +59,7 @@ const ServicesSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="services" className="w-full bg-[#000000] text-white py-24 md:py-32 font-sans z-30 relative overflow-hidden min-h-screen">
+    <section ref={sectionRef} id="services" className="w-full bg-[#000000] text-white py-24 md:py-32 font-sans z-30 relative overflow-hidden min-h-[100dvh]">
       <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 xl:px-16 flex flex-col items-center">
 
         {/* Massive Bold Headline */}
