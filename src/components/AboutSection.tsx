@@ -166,9 +166,8 @@ const AboutSection = () => {
 
                 <div className="mt-8 lg:mt-10">
                   <a
-                    href="/AdityaRai_Resume.pdf"
+                    href="/AdityaRai_Resume.pdf?updated=true"
                     download="AdityaRai_Resume.pdf"
-                    target="_blank"
                     className="inline-flex items-center gap-2 px-6 py-2 md:px-8 md:py-3 rounded-full border font-bold text-xs md:text-sm transition-colors uppercase tracking-wider hover:bg-black/5"
                     style={{ borderColor: "var(--fg-color)", color: "var(--fg-color)" }}
                   >
