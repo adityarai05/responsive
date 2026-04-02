@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const servicesData = [
   {
@@ -7,36 +8,58 @@ const servicesData = [
     title: "Web Design & Development",
     description: "We build intuitive, fast, and scalable digital experiences that convert visitors into loyal customers, leveraging high-performance React and modern bleeding-edge web frameworks.",
     tags: ["Responsive Design", "Interactive Design", "Web Apps"],
-    imgSrc: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
+    imgSrc: "/download.jpg"
   },
   {
     id: "02.",
     title: "UI & UX Design",
     description: "Design modern, user-friendly interfaces with smooth animations and responsive layouts to deliver engaging digital experiences..",
     tags: ["Responsive Design", "Interactive UI", "User Experience"],
-    imgSrc: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=800"
+    imgSrc: "/UX vs UI design_ What’s the difference_ [2025 Update].jpg"
   },
   {
     id: "03.",
     title: "AI & Automation",
     description: "I build intelligent tools like chatbots and automation systems using Generative AI to solve real business problems.",
     tags: ["Generative AI", "Chatbots", "Automation"],
-    imgSrc: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=800"
+    imgSrc: "/The Future Is Intelligent - Digital Marketing Growth Into 2026.jpg"
   },
   {
     id: "04.",
     title: "Landing Pages",
     description: "Design high-converting, fast, and responsive landing pages focused on user engagement and business results.",
     tags: ["Lead Generation", "Modern UI", "Clean Layouts"],
-    imgSrc: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
+    imgSrc: "/Advanced Analytics Dashboard - Boost Conversions & Opportunities.jpg"
   }
 ];
 
 const ServicesSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Intelligently sync GSAP calculations exactly when this dynamic section updates its bounds.
+    // This strictly fixes layout overlapping and cutoff bugs when scrolling downstream.
+    if (!sectionRef.current) return;
+    
+    let debounceTimer: NodeJS.Timeout;
+    const observer = new ResizeObserver(() => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 150);
+    });
+    
+    observer.observe(sectionRef.current);
+    
+    return () => {
+      clearTimeout(debounceTimer);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
-    <section id="services" className="w-full bg-[#000000] text-white py-24 md:py-32 font-sans z-30 relative overflow-hidden">
+    <section ref={sectionRef} id="services" className="w-full bg-[#000000] text-white py-24 md:py-32 font-sans z-30 relative overflow-hidden min-h-screen">
       <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 xl:px-16 flex flex-col items-center">
 
         {/* Massive Bold Headline */}

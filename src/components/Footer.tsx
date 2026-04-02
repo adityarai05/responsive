@@ -22,7 +22,7 @@ const Footer = () => (
           <span className="text-xs md:text-sm opacity-50 mb-1">pages</span>
           <a href="/#home" className="text-base md:text-xl tracking-tight hover:opacity-75 transition-opacity">home</a>
           <a href="/#about" className="text-base md:text-xl tracking-tight hover:opacity-75 transition-opacity">about</a>
-          <a href="/#work" className="text-base md:text-xl tracking-tight hover:opacity-75 transition-opacity">work</a>
+          <a href="/#work" className="text-base md:text-xl tracking-tight hover:opacity-75 transition-opacity">projects</a>
         </div>
         <div className="flex flex-col gap-3">
           <span className="text-xs md:text-sm opacity-50 mb-1">socials</span>

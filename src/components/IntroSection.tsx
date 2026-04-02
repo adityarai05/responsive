@@ -16,7 +16,7 @@ const IntroSection = () => {
   }, { scope: containerRef });
 
   return (
-    <div className="relative w-full h-[200vh] z-20">
+    <div id="home" className="relative w-full h-[200vh] z-20">
       <section 
         ref={containerRef} 
         className="sticky top-0 w-full h-screen overflow-hidden font-display z-30 bg-[#0a0a0a]"
